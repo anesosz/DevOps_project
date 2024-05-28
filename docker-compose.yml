@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: ./backend
+    networks:
+      - app-network
+    depends_on:
+      - MypostgresSQL
+
+  database:
+    build: ./database
+    networks:
+      - app-network
+
+  httpd:
+    build: ./frontend
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    depends_on:
+      - backend
+
+networks:
+  my-network:
