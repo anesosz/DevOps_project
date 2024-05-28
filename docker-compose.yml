@@ -1,22 +1,25 @@
+version: '3.7'
+
 services:
   backend:
-    build: ./backend
+    build: ./backend/simple-api-student-main
     networks:
-      - app-network
+      - my-network
     depends_on:
-      - MypostgresSQL
+      - database
 
   database:
     build: ./database
     networks:
-      - app-network
+      - my-network
+
 
   httpd:
     build: ./frontend
     ports:
       - "80:80"
     networks:
-      - app-network
+      - my-network
     depends_on:
       - backend
 
