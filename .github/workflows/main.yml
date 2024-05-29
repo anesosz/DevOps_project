@@ -20,7 +20,7 @@ jobs:
 
       - name: Build and test with Maven #Run SonarCloud analysis only on master branch
         if: github.ref == 'refs/heads/master' 
-        run: mvn -B verify sonar:sonar -Dsonar.projectKey=anesosz -Dsonar.organization=anesosz -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./backend/simpleapi
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=anesosz -Dsonar.organization=anesosz -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./pom.xml
         working-directory: ./backend/simpleapi
 
   build-and-push-docker-image:
