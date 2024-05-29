@@ -73,8 +73,8 @@ To set up the Quality Gate, you need to:
 
 If desired, you can separate the jobs into different workflows to ensure:
 
-- The `test-backend` job runs on both `develop` and `main` branches.
-- The `build-and-push-docker-image` job runs only on the `main` branch.
+- The `test-backend` job runs on both `develop` and `master` branches.
+- The `build-and-push-docker-image` job runs only on the `master` branch.
 - The Docker API image is pushed only if the `test-backend` job is successful.
 
 ## References
