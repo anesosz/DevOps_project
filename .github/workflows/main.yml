@@ -19,7 +19,7 @@ jobs:
           java-version: '17'
 
       - name: Build and test with Maven
-        run: mvn clean verify
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=<anesosz> -Dsonar.organization=<anesosz> -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./backend/simpleapi/pom.xml
         working-directory: ./backend/simpleapi
 
   build-and-push-docker-image:
@@ -35,7 +35,7 @@ jobs:
       - name: Build and push backend Docker image
         uses: docker/build-push-action@v3
         with:
-          context: ./backend/simple-api-student-main
+          context: ./backend/simpleapi
           tags: ${{ secrets.DOCKERHUB_USERNAME}}/tp-devops-backend:latest
           push: ${{ github.ref == 'refs/heads/master' }}
 
