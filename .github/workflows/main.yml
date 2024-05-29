@@ -30,25 +30,25 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Login to DockerHub
-        run: echo "${{ env.anesosz }}" | docker login -u "${{ env.anesosz }}" --password-stdin
+        run: echo "${{ env.DOCKERHUB_TOKEN }}" | docker login -u "${{ env.DOCKERHUB_USERNAME }}" --password-stdin
 
       - name: Build and push backend Docker image
         uses: docker/build-push-action@v3
         with:
           context: ./backend/simple-api-student-main
-          tags: ${{ secrets.anesosz }}/backend:1.0
+          tags: ${{ env.DOCKERHUB_USERNAME}}/backend:1.0
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: Build and push database Docker image
         uses: docker/build-push-action@v3
         with:
           context: ./database
-          tags: ${{ secrets.anesosz }}/database:14.1-alpine
+          tags: ${{ env.DOCKERHUB_USERNAME }}/database:14.1-alpine
           push: ${{ github.ref == 'refs/heads/master' }}
 
       - name: Build and push frontend Docker image
         uses: docker/build-push-action@v3
         with:
           context: ./frontend
-          tags: ${{ secrets.anesosz }}/frontend:2.4
+          tags: ${{ env.DOCKERHUB_USERNAME }}/frontend:2.4
           push: ${{ github.ref == 'refs/heads/master' }}
