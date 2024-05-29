@@ -12,7 +12,7 @@ This project sets up a 3-tier application architecture using Docker containers c
 **To build and run the entire application, follow these steps:**
 
 1. Navigate to the root directory of the project where the docker-compose.yml file is located.
-2. Run the following command to start and run all the services defined in docker-compose.yml:** 
+2. Run the following command to start and run all the services defined in docker-compose.yml: 
 ```bash
 docker-compose up --build
 ```
