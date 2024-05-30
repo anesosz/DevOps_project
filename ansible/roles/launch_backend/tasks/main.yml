@@ -1,7 +1,7 @@
 - name: Launch application container
   docker_container:
     name: backend
-    image: anesosz/tp-devops-backend
+    image: anesosz/backend:1.0
     networks:
       - name: my_network
     ports:
