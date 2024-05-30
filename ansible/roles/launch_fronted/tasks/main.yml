@@ -1,7 +1,7 @@
 - name: Launch fronted container
   docker_container:
     name: httpd
-    image: anesosz/tp-devops-frontend
+    image: anesosz/tp-devops-frontend:latest
     ports:
       - "80:80"
     networks:
