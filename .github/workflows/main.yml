@@ -21,7 +21,7 @@ jobs:
       - name: Build and test with Maven #Run SonarCloud analysis only on master branch
         if: github.ref == 'refs/heads/master' 
         run: mvn -B verify sonar:sonar -Dsonar.projectKey=anesosz_Tp_DevOps_Docker -Dsonar.organization=anesosz -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --file ./pom.xml
-        working-directory: ./backend/simpleapi
+        working-directory: ./backend/simple-api-student-main
 
   build-and-push-docker-image:
     needs: test-backend
@@ -36,7 +36,7 @@ jobs:
       - name: Build and push backend Docker image
         uses: docker/build-push-action@v3
         with:
-          context: ./backend/simpleapi
+          context: ./backend/simple-api-student-main
           tags: ${{ secrets.DOCKERHUB_USERNAME}}/tp-devops-backend:latest
           push: ${{ github.ref == 'refs/heads/master' }}
 

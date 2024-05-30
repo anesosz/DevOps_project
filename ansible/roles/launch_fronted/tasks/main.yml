@@ -1,10 +1,19 @@
-- name: Launch fronted container
+- name: Launch frontend container
   docker_container:
     name: httpd
-    image: anesosz/tp-devops-frontend:latest
+    image: anesosz/tp-devops-frontend
+    state: started
     ports:
       - "80:80"
     networks:
       - name: my_network
+    env:
+      API_URL: "http://backend:8080/api"
+      DB_HOST: "database"
+      DB_USER: "usr"
+      DB_PASSWORD: "pwd"
+      DB_NAME: "db"
+    user: root
+    privileged: true
   vars:
     ansible_python_interpreter: /usr/bin/python3
