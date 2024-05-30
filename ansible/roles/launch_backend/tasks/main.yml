@@ -1,6 +1,6 @@
 - name: Launch application container
   docker_container:
-    name: Myapp
+    name: backend
     image: anesosz/backend:1.0
     env:
       DATABASE_URL: postgres://myuser:mypassword@database/mydb
