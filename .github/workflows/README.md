@@ -76,6 +76,7 @@ If desired, you can separate the jobs into different workflows to ensure:
 - The `test-backend` job runs on both `develop` and `master` branches.
 - The `build-and-push-docker-image` job runs only on the `master` branch.
 - The Docker API image is pushed only if the `test-backend` job is successful.
+- The `deploy` job will only run if the `build-and-push-docker-image` job has completed successfully.
 
 ## References
 

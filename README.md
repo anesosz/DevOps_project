@@ -7,6 +7,8 @@ This project sets up a 3-tier application architecture using Docker containers c
 2. **Backend**: JavaAPI
 3. **Frontend**: Apache HTTP Server 
 
+`Ansible`, `SonarCloud`, and `GitHub Actions` are integrated to automate various tasks and streamline the CI/CD pipeline. For detailed information on each integration, please refer to the `README` of each component.
+
 ## Instructions
 
 **To build and run the entire application, follow these steps:**
