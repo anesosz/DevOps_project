@@ -51,5 +51,5 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: ./frontend
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-frontend:latest # Fixed typo in Docker image name
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tp-devops-frontend:latest 
           push: ${{ github.ref == 'refs/heads/master' }}

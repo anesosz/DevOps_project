@@ -2,9 +2,9 @@
   docker_container:
     name: backend
     image: anesosz/backend:1.0
-    env:
-      DATABASE_URL: postgres://myuser:mypassword@database/mydb
     networks:
       - name: my_network
+    ports:
+      - "8080:8080"
   vars:
     ansible_python_interpreter: /usr/bin/python3
