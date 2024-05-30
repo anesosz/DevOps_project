@@ -1,0 +1,10 @@
+- name: Launch application container
+  docker_container:
+    name: Myapp
+    image: anesosz/backend:1.0
+    env:
+      DATABASE_URL: postgres://myuser:mypassword@database/mydb
+    networks:
+      - name: my_network
+  vars:
+    ansible_python_interpreter: /usr/bin/python3

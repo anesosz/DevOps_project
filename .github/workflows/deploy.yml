@@ -1,0 +1,43 @@
+name: Deploy Application
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+
+    - name: Install Docker
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker.io
+
+    - name: Pull Docker image with Ansible
+      run: docker pull williamyeh/ansible:alpine3
+
+    - name: Run Ansible Playbook
+      env:
+        ANSIBLE_HOST_KEY_CHECKING: 'false'
+        ANSIBLE_PRIVATE_KEY_FILE: ${{ secrets.SSH_PRIVATE_KEY }}
+        ANSIBLE_REMOTE_USER: your_user
+        ANSIBLE_VAULT_PASSWORD_FILE: ${{ secrets.ANSIBLE_VAULT_PASSWORD_FILE }}
+      run: |
+        docker run --rm \
+          -v $(pwd):/ansible/playbooks \
+          -v ${{ secrets.SSH_PRIVATE_KEY }}:/root/.ssh/id_rsa \
+          -e ANSIBLE_HOST_KEY_CHECKING=false \
+          -e ANSIBLE_REMOTE_USER=your_user \
+          -e ANSIBLE_VAULT_PASSWORD_FILE=${{ secrets.ANSIBLE_VAULT_PASSWORD_FILE }} \
+          williamyeh/ansible:alpine3 \
+          ansible-playbook /ansible/playbooks/deploy.yml -i /ansible/playbooks/inventories/setup.yml
