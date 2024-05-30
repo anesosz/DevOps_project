@@ -1,7 +1,7 @@
 - name: Launch database container
   docker_container:
     name: database
-    image: anesosz/database:14.1-alpine
+    image: anesosz/tp-devops-database
     env:
       POSTGRES_DB: db
       POSTGRES_USER: usr
